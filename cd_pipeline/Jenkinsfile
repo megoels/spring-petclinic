@@ -33,8 +33,8 @@ pipeline {
         stage("Build and start test image") {
             steps {
                 sh "docker-compose build"
-                //sh "docker-compose up -d"
-                sh "docker-compose up -d --scale petclinic=${env.APP_CONTAINERS}"
+                sh "docker-compose up -d"
+                //TODO: sh "docker-compose up -d --scale petclinic=${env.APP_CONTAINERS}"
                 //sh "sleep 50"
                 // wait until the containers are up and running
                 sh """
