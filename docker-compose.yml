@@ -14,7 +14,7 @@ services:
       image: nginx
       restart: always
       env_file:
-          - "cd_pipeline/.env"
+          - ./cd_pipeline/.env
       environment:
           - NGINX_HOST=${NGINX_HOST}
       ports:
@@ -24,8 +24,7 @@ services:
           - "./cd_pipeline/etc/nginx/nginx.conf:/etc/nginx/nginx.conf"
       command: /bin/bash -c "nginx -g 'daemon off;'"
       links:
-          - petclinic_1:petclinic_1
-          - petclinic_2:petclinic_2
+          - petclinic:petclinic
       #networks:
       #    - front-tier
       #    - back-tier
@@ -36,7 +35,7 @@ services:
       container_name: ${MYSQL_HOST}
       restart: always
       env_file:
-          - "cd_pipeline/.env"
+          - ./cd_pipeline/.env
       environment:
           - MYSQL_DATABASE=${MYSQL_DATABASE}
           - MYSQL_ROOT_USER=${MYSQL_ROOT_USER}
@@ -67,7 +66,7 @@ services:
       ports:
           - "49001:8080"
       env_file:
-          - "cd_pipeline/.env"
+          - ./cd_pipeline/.env
       environment:
           - MYSQL_DATABASE=${MYSQL_DATABASE}
           - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
