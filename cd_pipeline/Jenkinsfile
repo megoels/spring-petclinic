@@ -43,7 +43,7 @@ pipeline {
                         -v /var/run/docker.sock:/var/run/docker.sock:ro \
                         -e TIMEOUT=120 \
                         -e COMPOSE_PROJECT_NAME=\$(basename \"'${env.WORKSPACE}'\") \
-                        -e EXPECTED_CONTAINERS=\"'${env.EXPECTED_CONTAINERS}'\" \
+                        -e EXPECTED_CONTAINERS='${env.EXPECTED_CONTAINERS}' \
                         softonic/compose-project-is-up
                 """
                 //Waits until a compose project is running: https://github.com/softonic/compose-project-is-up
